@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { ShoppingCart } from 'lucide-react';
-import { useCart } from '@/hooks/use-cart'; // или @/lib/store
+import { useCart } from '@/lib/store'; 
 import { toast } from 'sonner';
 
 interface ProductAddToCartProps {
@@ -20,15 +20,21 @@ export function ProductAddToCart({ product }: ProductAddToCartProps) {
 
   const handleAddToCart = () => {
     setLoading(true);
-    // Добавляем в Zustand
+    
+    // Добавляем товар в корзину через Zustand
     addItem({ ...product, quantity: 1 });
     
-    // Эффектное уведомление (QA оценят)
-    toast.success(`${product.name} added to your alpine bag`, {
-      style: { background: '#2C5530', color: '#fff', borderRadius: '0' }
+    // Уведомление в швейцарском стиле: четко и красиво
+    toast.success(`${product.name} added to your bag`, {
+      style: { 
+        background: '#2C5530', 
+        color: '#fff', 
+        borderRadius: '0px',
+        border: 'none'
+      },
     });
     
-    setTimeout(() => setLoading(false), 500);
+    setTimeout(() => setLoading(false), 600);
   };
 
   return (
@@ -36,12 +42,14 @@ export function ProductAddToCart({ product }: ProductAddToCartProps) {
       onClick={handleAddToCart}
       disabled={loading}
       className={`
-        w-full h-20 flex items-center justify-center gap-4 transition-all duration-300 uppercase font-black tracking-widest text-sm
-        ${loading ? 'bg-gray-200' : 'bg-alpine-forest hover:bg-alpine-gold text-white'}
+        w-full h-20 flex items-center justify-center gap-4 transition-all duration-500 uppercase font-black tracking-widest text-xs
+        ${loading 
+          ? 'bg-gray-100 text-gray-400 cursor-not-allowed' 
+          : 'bg-alpine-forest hover:bg-alpine-gold text-white active:scale-[0.98]'}
       `}
     >
-      <ShoppingCart className={loading ? 'animate-bounce' : ''} size={20} />
-      {loading ? 'Processing...' : 'Add to Shopping Bag'}
+      <ShoppingCart className={`${loading ? 'animate-bounce' : ''} transition-transform`} size={18} />
+      {loading ? 'Adding...' : 'Add to Shopping Bag'}
     </button>
   );
 }
