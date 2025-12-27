@@ -6,11 +6,10 @@ import { Footer } from '@/components/layout/footer';
 import { LanguageProvider } from '@/components/providers/language-provider';
 import { Toaster } from 'sonner';
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
-const playfair = Playfair_Display({
+const inter = Inter({ 
   subsets: ['latin'],
-  variable: '--font-playfair',
-  weight: ['400', '500', '600', '700'],
+  display: 'swap',
+  preload: false, // Отключаем обязательную предзагрузку, чтобы не зависеть от серверов Гугла
 });
 
 export const metadata: Metadata = {
