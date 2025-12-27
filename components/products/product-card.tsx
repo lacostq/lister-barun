@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { ShoppingCart } from 'lucide-react';
-import { useCart } from '@/hooks/use-cart'; // ПРОВЕРЕНО: В Болте путь именно такой
+import { useCart } from '@/lib/store';
 
 interface ProductCardProps {
   id: string;
