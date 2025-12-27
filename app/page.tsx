@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
 import { Mountain, Sparkles, ShoppingBag, Star, Award, Leaf, Shield, Clock, Globe, Heart, ChevronRight, X, Check } from 'lucide-react';
 
