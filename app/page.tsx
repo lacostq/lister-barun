@@ -1,9 +1,10 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Mountain, Sparkles, ShoppingBag, Star, Award, Leaf, Shield, Clock, Globe, Heart, ChevronRight, X, Check } from 'lucide-react';
+import { Mountain, Sparkles, ShoppingBag, Star, Award, Shield, Clock, Globe, Heart, ChevronRight, X, Check } from 'lucide-react';
 
 const PremiumSwissSoapStore = () => {
+  // Управление состоянием для всех интерактивных элементов
   const [scrollY, setScrollY] = useState(0);
   const [showCheckout, setShowCheckout] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -15,12 +16,14 @@ const PremiumSwissSoapStore = () => {
     address: ''
   });
 
+  // Отслеживание прокрутки для параллакс-эффектов (оптимизировано для производительности)
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Данные продуктов - в будущем это будет загружаться из Supabase
   const products = [
     {
       id: 1,
@@ -60,16 +63,19 @@ const PremiumSwissSoapStore = () => {
     }
   ];
 
+  // Обработчик мгновенной покупки
   const handleInstantBuy = (product) => {
     setSelectedProduct(product);
     setShowCheckout(true);
     setFormData({ name: '', email: '', phone: '', address: '' });
   };
 
+  // Обработчик изменения полей формы
   const handleInputChange = (field, value) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
+  // Обработчик завершения заказа (позже здесь будет интеграция со Stripe)
   const handleCompleteOrder = () => {
     if (formData.name && formData.email && formData.phone && formData.address) {
       setOrderComplete(true);
@@ -84,6 +90,7 @@ const PremiumSwissSoapStore = () => {
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
       
+      {/* Модальное окно мгновенной покупки */}
       {showCheckout && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-xl p-4">
           <div className="bg-gradient-to-br from-gray-900 to-black border border-gray-800 rounded-3xl max-w-md w-full p-8 shadow-2xl relative">
@@ -169,6 +176,7 @@ const PremiumSwissSoapStore = () => {
         </div>
       )}
 
+      {/* Навигация - минималистичная и элегантная */}
       <nav className="fixed top-0 left-0 right-0 z-40 bg-black/80 backdrop-blur-xl border-b border-white/10">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2 text-xl font-bold">
@@ -184,6 +192,7 @@ const PremiumSwissSoapStore = () => {
         </div>
       </nav>
 
+      {/* Hero Section - максимальная эмоциональность и роскошь */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out"
@@ -245,6 +254,7 @@ const PremiumSwissSoapStore = () => {
         </div>
       </section>
 
+      {/* Раздел "Почему Swiss - это #1" */}
       <section className="py-32 px-6 relative bg-gradient-to-b from-black via-gray-900 to-black">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 gap-20 items-center">
@@ -311,6 +321,7 @@ const PremiumSwissSoapStore = () => {
         </div>
       </section>
 
+      {/* Коллекция продуктов - фокус на эксклюзивности */}
       <section className="py-32 px-6 relative bg-black">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
@@ -380,6 +391,7 @@ const PremiumSwissSoapStore = () => {
         </div>
       </section>
 
+      {/* Социальное доказательство */}
       <section className="py-32 px-6 bg-gradient-to-b from-black via-gray-900 to-black">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
@@ -424,6 +436,7 @@ const PremiumSwissSoapStore = () => {
         </div>
       </section>
 
+      {/* Финальный призыв к действию */}
       <section className="py-32 px-6 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-amber-500/20 via-orange-500/20 to-amber-500/20 blur-3xl" />
         
@@ -464,6 +477,7 @@ const PremiumSwissSoapStore = () => {
         </div>
       </section>
 
+      {/* Футер */}
       <footer className="border-t border-gray-900 py-12 px-6 bg-black">
         <div className="max-w-7xl mx-auto text-center">
           <div className="flex items-center justify-center gap-2 text-2xl font-bold mb-6">
