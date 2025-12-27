@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ShoppingCart } from 'lucide-react';
-import { useCart } from '@/store/use-cart'; // проверь путь к zustand
+import { useCart } from '@/hooks/use-cart';
 
 interface ProductCardProps {
   id: string;
